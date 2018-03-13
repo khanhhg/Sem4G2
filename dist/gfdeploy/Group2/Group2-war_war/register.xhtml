@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+       xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+       <ui:composition template="/layout/bodyLayout.xhtml">
+            <ui:define name="content">
+                <!--
+             
+                -->
+                  <div id="maincontainer">
+                    <div class="container">
+                        <div id="login">
+                            <h1 class="headingmain"><span>Create your account</span></h1>
+                            <f:view>
+                                <h:form>
+                                    <section class="returncustomer">
+                                        <h2 class="heading2">Welcome to Online Fashion Shop </h2>
+                                        <div class="loginbox">
+                                            <h4 class="heading4">You not have account? Please register!</h4>
+                                           
+                                            <div class="form-vertical">
+                                                <fieldset>
+                                                    <div class="control-group">
+                                                        <label  class="control-label">Email:</label>
+                                                        <div class="controls">
+                                                            <h:inputText id="email" value="" class="span3 input-full" required="true" requiredMessage="Email can not be empty">
+                                                                <f:validateLength minimum="3" maximum="100" />
+                                                                <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+                                                            </h:inputText><span style="color: red; margin-left: 10px">*</span><br />
+                                                            <h:message for="email" />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="control-group">
+                                                        <label  class="control-label">Password:</label>
+                                                        <div class="controls">
+                                                            <h:inputSecret id="password" value="" class="span3 input-full" required="true" requiredMessage="Passwords must not be blank">
+                                                                <f:validateLength minimum="6" maximum="30" />
+                                                            </h:inputSecret><span style="color: red; margin-left: 10px">*</span><br />
+                                                            <h:message for="password" />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="control-group">
+                                                        <label  class="control-label">Re password:</label>
+                                                        <div class="controls">
+                                                            <h:inputSecret id="re-password" value="" class="span3 input-full" required="true" requiredMessage="re-password must not be blank">
+                                                                <f:validateLength minimum="3" maximum="30" />
+                                                            </h:inputSecret><span style="color: red; margin-left: 10px">*</span><br />
+                                                            <h:message for="re-password" />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="control-group">
+                                                        <label  class="control-label">Fullname:</label>
+                                                        <div class="controls">
+                                                            <h:inputText id="name" value="" class="span3 input-full" required="true" requiredMessage="Full name must not be blank">
+                                                                <f:validateLength minimum="3" maximum="60" />
+                                                            </h:inputText><span style="color: red; margin-left: 10px">*</span><br />
+                                                            <h:message for="name" />
+                                                        </div>
+                                                    </div>
+
+                                                  
+                                                    <div class="control-group">
+                                                        <label  class="control-label">Phone:</label>
+                                                        <div class="controls">
+                                                            <h:inputText id="phone" value="" class="span3 input-full" required="true" requiredMessage="Phone number must not be blank">
+                                                                <f:validateLength minimum="10" maximum="11" />
+                                                                <f:validateRegex pattern="[0-9]{10,11}" />
+                                                            </h:inputText><span style="color: red; margin-left: 10px">*</span><br />
+                                                            <h:message for="phone" />
+                                                        </div>
+                                                    </div>                                                    
+                                                    <div class="control-group">
+                                                        <label  class="control-label">Address:</label> 
+                                                        <div class="controls">
+                                                            <h:inputText id="address" value="" class="span3 input-full" required="true" requiredMessage="Address can not be empty">
+                                                                <f:validateLength minimum="3" maximum="200" />
+                                                            </h:inputText><span style="color: red; margin-left: 10px">*</span><br />
+                                                            <h:message for="address" />
+                                                        </div>
+                                                    </div>
+                                                  <span style="color: red; margin-left: 10px;">(*) Field must not be blank!</span><br/><br/>
+                                                    <h:commandButton class="btn btn-success" value="Register"  />
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </h:form>
+                            </f:view>
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

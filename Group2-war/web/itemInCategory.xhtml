@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+       xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+      
+        <ui:composition template="/layout/bodyLayout.xhtml">
+            <ui:define name="content">
+                <c:set var='category' value='#{categoryManagedBean.category}' />
+                <c:choose> 
+                    <c:when test="${empty category}">
+                        #{facesContext.externalContext.redirect("404.xhtml")}
+                    </c:when>
+                    <c:otherwise>
+                        <div id="maincontainer">
+                            <div class="container">
+                                <nav class="breadcrumb" role="navigation" aria-label="breadcrumbs">
+                                    <a href="/" title="general.breadcrumbs.home_link_title">Home</a>
+                                    <span class="divider">/</span>
+                                    <a href="itemInCategory.xhtml?id=#{category.categoryID}" title="">#{category.categoryName}</a>
+                                </nav>
+                            </div>
+                            <section id="latest">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="span12">
+                                            <h1 class="headingfull"><span>Category #{category.categoryName}</span></h1>
+                                            <ul class="thumbnails">
+                                                <ul class="products">
+                                                    <c:if test="#{category.productsCollection.size() == 0}">
+                                                        No product in #{brands.brandName} brand
+                                                    </c:if>
+                                                    <c:if test="#{category.productsCollection.size() != 0}">
+                                                        <c:forEach items="#{category.productsCollection}" var="newList">
+                                                            <li class="span3">
+                                                                <h:form>
+                                                                    <h:commandLink class="prdocutname" action="#{productManagedBean.showProduct()}">
+                                                                        <f:param name="productID" value="#{newList.productID}" />
+                                                                        #{newList.productName}
+                                                                    </h:commandLink>
+                                                                </h:form>
+                                                                <div class="thumbnail">
+                                                                    <span class="sale tooltip-test" data-original-title="">Hot</span>
+                                                                    <h:form>
+                                                                        <h:commandLink action="#{productManagedBean.showProduct()}">
+                                                                            <f:param name="productID" value="#{newList.productID}" />
+                                                                            <img src="#{imagesPath}/#{newList.image}" style="width: 250px; height: 314px;" />
+                                                                        </h:commandLink>
+                                                                    </h:form>
+                                                                    <div class="caption">
+                                                                        <div class="price pull-left">
+                                                                            <span class="newprice">
+                                                                                <h:outputText value="#{newList.priceOut}">
+                                                                                    <f:convertNumber pattern="###,###₫" currencySymbol="₫" type="currency"/>
+                                                                                </h:outputText>
+                                                                            </span>
+                                                                            <span class="newprice" style="color: #999; background-color: white; font-size: 14px">
+                                                                                #{newList.quantity}  product available
+                                                                            </span>
+                                                                        </div>
+                                                                        <h:form>
+                                                                            <!-- Kiem tra dang nhap-->
+                                                                           
+
+
+                                                                           
+                                                                                <h:commandButton class="cartadd addtocart pull-right tooltip-test" style="border:0;" action="#{shopCart.addCart(newList)}">
+                                                                                </h:commandButton>
+                                                                                <!-- Kiem tra dang nhap-->
+                                                                        </h:form>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        </c:forEach>
+                                                    </c:if>
+                                                </ul>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
