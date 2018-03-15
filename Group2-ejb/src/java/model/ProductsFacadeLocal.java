@@ -31,10 +31,10 @@ public interface ProductsFacadeLocal {
 
     int count();
 
-    public List<Products> findAllOrder();
+    public List<Products> findRelated(int categoryID);
 
     public List<Products> findAllPro();
 
-    public List<Products> findRelated(int categoryID);
+    public List<Products> findAllOrder();
     
 }

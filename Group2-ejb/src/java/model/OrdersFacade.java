@@ -6,15 +6,10 @@
 
 package model;
 
-import entities.Customers;
 import entities.Orders;
-import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.Root;
 
 /**
  *
@@ -34,50 +29,4 @@ public class OrdersFacade extends AbstractFacade<Orders> implements OrdersFacade
         super(Orders.class);
     }
     
-    
-   
-    
-     public Long orderCancel(){
-        long count = 0;
-        Query q = em.createQuery("SELECT COUNT(a) FROM Orders a WHERE a.Status = -1");
-        try {
-            count = (Long) q.getSingleResult();
-        } catch (Exception e) {
-            count = 0;
-        }
-        return count;
-    }
-    
-    public Long orderNewOrder(){
-        long count = 0;
-        Query q = em.createQuery("SELECT COUNT(a) FROM Orders a WHERE a.Status = 0");
-        try {
-            count = (Long) q.getSingleResult();
-        } catch (Exception e) {
-            count = 0;
-        }
-        return count;
-    }
-    
-    public Long orderProgress(){
-        long count = 0;
-        Query q = em.createQuery("SELECT COUNT(a) FROM Orders a WHERE a.Status = 1");
-        try {
-            count = (Long) q.getSingleResult();
-        } catch (Exception e) {
-            count = 0;
-        }
-        return count;
-    }
-    
-    public Long orderComplete(){
-        long count = 0;
-        Query q = em.createQuery("SELECT COUNT(a) FROM Orders a WHERE a.Status = 2");
-        try {
-            count = (Long) q.getSingleResult();
-        } catch (Exception e) {
-            count = 0;
-        }
-        return count;
-    }
 }

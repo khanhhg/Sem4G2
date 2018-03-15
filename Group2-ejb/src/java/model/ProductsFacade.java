@@ -32,8 +32,13 @@ public class ProductsFacade extends AbstractFacade<Products> implements Products
     public ProductsFacade() {
         super(Products.class);
     }
+
+    /**
+     *
+     * @return
+     */
     @Override
-      public List<Products> findAllOrder() {
+     public List<Products> findAllOrder() {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         javax.persistence.criteria.CriteriaQuery cq = cb.createQuery();
         Root c = cq.from(Products.class);
@@ -45,7 +50,7 @@ public class ProductsFacade extends AbstractFacade<Products> implements Products
         return q.getResultList();
     }
     @Override
-       public List<Products> findAllPro() {
+     public List<Products> findAllPro() {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         javax.persistence.criteria.CriteriaQuery cq = cb.createQuery();
         Root c = cq.from(Products.class);
@@ -57,7 +62,7 @@ public class ProductsFacade extends AbstractFacade<Products> implements Products
         return q.getResultList();
     }
     @Override
-       public List<Products> findRelated(int categoryID) {
+      public List<Products> findRelated(int categoryID) {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         javax.persistence.criteria.CriteriaQuery cq = cb.createQuery();
         Root c = cq.from(Products.class);

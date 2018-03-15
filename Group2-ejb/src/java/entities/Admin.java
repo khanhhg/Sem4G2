@@ -36,7 +36,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Admin.findByAdminEmail", query = "SELECT a FROM Admin a WHERE a.adminEmail = :adminEmail"),
     @NamedQuery(name = "Admin.findByAdminPhone", query = "SELECT a FROM Admin a WHERE a.adminPhone = :adminPhone"),
     @NamedQuery(name = "Admin.findByRole", query = "SELECT a FROM Admin a WHERE a.role = :role"),
-    @NamedQuery(name = "Admin.findByStatus", query = "SELECT a FROM Admin a WHERE a.status = :status")})
+    @NamedQuery(name = "Admin.findByStatus", query = "SELECT a FROM Admin a WHERE a.status = :status"),
+    @NamedQuery(name = "Admin.findByPassword", query = "SELECT a FROM Admin a WHERE a.password = :password")})
 public class Admin implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -64,6 +65,11 @@ public class Admin implements Serializable {
     private String role;
     @Column(name = "Status")
     private Short status;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 20)
+    @Column(name = "Password")
+    private String password;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "adminID")
     private Collection<News> newsCollection;
 
@@ -74,11 +80,12 @@ public class Admin implements Serializable {
         this.adminID = adminID;
     }
 
-    public Admin(Integer adminID, String adminName, String adminEmail, String adminPhone) {
+    public Admin(Integer adminID, String adminName, String adminEmail, String adminPhone, String password) {
         this.adminID = adminID;
         this.adminName = adminName;
         this.adminEmail = adminEmail;
         this.adminPhone = adminPhone;
+        this.password = password;
     }
 
     public Integer getAdminID() {
@@ -127,6 +134,14 @@ public class Admin implements Serializable {
 
     public void setStatus(Short status) {
         this.status = status;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @XmlTransient

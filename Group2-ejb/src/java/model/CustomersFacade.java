@@ -10,9 +10,6 @@ import entities.Customers;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.Root;
 
 /**
  *
@@ -32,21 +29,4 @@ public class CustomersFacade extends AbstractFacade<Customers> implements Custom
         super(Customers.class);
     }
     
-    @Override
-     public Customers getByEmail(String email) {
-        CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
-        javax.persistence.criteria.CriteriaQuery cq = cb.createQuery();
-        Root c = cq.from(Customers.class);
-        cq.select(c);
-        cq.where(cb.equal(c.get("Email"), email)
-        );
-        Query q = getEntityManager().createQuery(cq);
-        Customers cus;
-        try {
-            cus = (Customers) q.getSingleResult();
-        } catch (Exception e) {
-            cus = null;
-        }
-        return cus;
-    }
 }

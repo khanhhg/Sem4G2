@@ -33,7 +33,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Categories.findAll", query = "SELECT c FROM Categories c"),
     @NamedQuery(name = "Categories.findByCategoryID", query = "SELECT c FROM Categories c WHERE c.categoryID = :categoryID"),
     @NamedQuery(name = "Categories.findByCategoryName", query = "SELECT c FROM Categories c WHERE c.categoryName = :categoryName"),
-    @NamedQuery(name = "Categories.findByStatus", query = "SELECT c FROM Categories c WHERE c.status = :status")})
+    @NamedQuery(name = "Categories.findByStatus", query = "SELECT c FROM Categories c WHERE c.status = :status"),
+    @NamedQuery(name = "Categories.findByChildCategory", query = "SELECT c FROM Categories c WHERE c.childCategory = :childCategory")})
 public class Categories implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -48,6 +49,8 @@ public class Categories implements Serializable {
     private String categoryName;
     @Column(name = "Status")
     private Short status;
+    @Column(name = "ChildCategory")
+    private Integer childCategory;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoryID")
     private Collection<Products> productsCollection;
 
@@ -85,6 +88,14 @@ public class Categories implements Serializable {
 
     public void setStatus(Short status) {
         this.status = status;
+    }
+
+    public Integer getChildCategory() {
+        return childCategory;
+    }
+
+    public void setChildCategory(Integer childCategory) {
+        this.childCategory = childCategory;
     }
 
     @XmlTransient

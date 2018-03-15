@@ -30,8 +30,5 @@ public interface CustomersFacadeLocal {
     List<Customers> findRange(int[] range);
 
     int count();
-
-    public Customers getByEmail(String email);
-
-   
+    
 }

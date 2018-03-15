@@ -33,7 +33,7 @@ public class CommentsFacade extends AbstractFacade<Comments> implements Comments
         super(Comments.class);
     }
     @Override
-      public List<Comments> findOnProduct(int id) {
+     public List<Comments> findOnProduct(int id) {
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
         javax.persistence.criteria.CriteriaQuery cq = cb.createQuery();
         Root c = cq.from(Comments.class);
@@ -45,4 +45,5 @@ public class CommentsFacade extends AbstractFacade<Comments> implements Comments
         Query q = getEntityManager().createQuery(cq);
         return q.getResultList();
     }
+
 }
