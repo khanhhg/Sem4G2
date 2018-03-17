@@ -8,7 +8,7 @@ import javax.persistence.metamodel.CollectionAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.0.v20130507-rNA", date="2018-03-15T21:03:20")
+@Generated(value="EclipseLink-2.5.0.v20130507-rNA", date="2018-03-17T17:05:06")
 @StaticMetamodel(Orders.class)
 public class Orders_ { 
 
@@ -16,9 +16,9 @@ public class Orders_ {
     public static volatile SingularAttribute<Orders, Integer> orderID;
     public static volatile CollectionAttribute<Orders, OrderDetails> orderDetailsCollection;
     public static volatile SingularAttribute<Orders, Customers> customerID;
-    public static volatile SingularAttribute<Orders, Date> orderDate;
     public static volatile SingularAttribute<Orders, String> orderPhone;
-    public static volatile SingularAttribute<Orders, String> orderName;
+    public static volatile SingularAttribute<Orders, Date> orderDate;
     public static volatile SingularAttribute<Orders, Short> status;
+    public static volatile SingularAttribute<Orders, String> orderName;
 
 }

@@ -11,7 +11,9 @@
     <h:body>
        <ui:composition template="/layout/bodyLayout.xhtml">
             <ui:define name="content">
-               
+                <c:if test="#{empty session.getAttribute('email')}">
+                    #{facesContext.externalContext.redirect("index.xhtml")}
+                </c:if>
                 <div id="maincontainer">
                     <section id="checkout">
                         <div class="container">
@@ -87,10 +89,10 @@
                                                     </tr>
                                                 </table>
                                                 <h:form>
-                                                    <h:commandButton value="Checkout" action="#{orderManaged.checkout()}" class="btn btn-success pull-right" />
+                                                    <h:commandButton value="Checkout" action="#{orderManagedBean.checkout()}" class="btn btn-info pull-right" />
                                                 </h:form>
                                                 <a href="#{root}/index.xhtml">
-                                                    <input type="submit" value="Continue Shoping" class="btn btn-success pull-right mr10"/>
+                                                    <input type="submit" value="Continue Shoping" class="btn btn-info pull-right mr10"/>
                                                 </a>
                                             </div>
                                         </div>

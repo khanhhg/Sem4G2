@@ -14,6 +14,7 @@ import javax.faces.bean.RequestScoped;
 import model.BrandsFacadeLocal;
 import user_controller.SessionManager;
 
+
 /**
  *
  * @author Khanh

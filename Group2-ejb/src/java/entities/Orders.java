@@ -13,6 +13,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -43,10 +45,28 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Orders.findByOrderPhone", query = "SELECT o FROM Orders o WHERE o.orderPhone = :orderPhone"),
     @NamedQuery(name = "Orders.findByStatus", query = "SELECT o FROM Orders o WHERE o.status = :status")})
 public class Orders implements Serializable {
+   
+    @Column(name = "Status")
+    private Short status;
+    @Basic(optional = false)
+    @Size(min = 0, max = 100)
+    @Column(columnDefinition = "NVARCHAR(100) NULL", name = "OrderName", nullable = true)
+    private String orderName;
+    
+    @Basic(optional = false)
+    @Size(min = 0, max = 200)
+    @Column(columnDefinition = "NVARCHAR(200) NULL", name = "OrderAddress", nullable = true)
+    private String orderAddress;
+    
+    @Basic(optional = false)
+    @Size(min = 0, max = 12)
+    @Column(name = "OrderPhone", nullable = true)
+    private String orderPhone;
+    
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @NotNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "OrderID")
     private Integer orderID;
     @Basic(optional = false)
@@ -54,28 +74,11 @@ public class Orders implements Serializable {
     @Column(name = "OrderDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date orderDate;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
-    @Column(name = "OrderName")
-    private String orderName;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 200)
-    @Column(name = "OrderAddress")
-    private String orderAddress;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 15)
-    @Column(name = "OrderPhone")
-    private String orderPhone;
-    @Column(name = "Status")
-    private Short status;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "OrderID")
+    private Collection<OrderDetails> orderDetailsCollection;
     @JoinColumn(name = "CustomerID", referencedColumnName = "CustomerID")
     @ManyToOne(optional = false)
     private Customers customerID;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "orderID")
-    private Collection<OrderDetails> orderDetailsCollection;
 
     public Orders() {
     }

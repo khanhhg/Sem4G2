@@ -28,5 +28,9 @@ public class OrdersFacade extends AbstractFacade<Orders> implements OrdersFacade
     public OrdersFacade() {
         super(Orders.class);
     }
-    
+    @Override
+     public int createOrders(Orders entity) {
+      
+        return entity.getOrderID();
+    }
 }

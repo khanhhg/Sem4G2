@@ -30,5 +30,7 @@ public interface OrdersFacadeLocal {
     List<Orders> findRange(int[] range);
 
     int count();
+
+    public int createOrders(Orders entity);
     
 }

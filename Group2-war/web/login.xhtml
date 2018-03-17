@@ -11,9 +11,9 @@
     <h:body>
         <ui:composition template="/layout/bodyLayout.xhtml">
             <ui:define name="content">
-              <!--
+           
              
-              -->
+          
                 <div id="maincontainer">
                     <div class="container">
                         <div id="login">
@@ -30,18 +30,18 @@
                                                     <div class="control-group">
                                                         <label  class="control-label">Email:</label>
                                                         <div class="controls">
-                                                            <h:inputText id="email" value="" class="span3 input-full" required="true" requiredMessage="Email can not be empty">
+                                                            <h:inputText id="email" value="#{customerManagedBean.customer.email}" class="span3 input-full" required="true" requiredMessage="Email can not be empty">
                                                                 <f:validateLength minimum="3" maximum="100" />
                                                                 <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
                                                             </h:inputText><span style="color: red; margin-left: 10px">*</span><br />
-                                                            <h:message for="email" />
+                                                            
                                                         </div>
                                                     </div>
 
                                                     <div class="control-group">
                                                         <label  class="control-label">Password:</label>
                                                         <div class="controls">
-                                                            <h:inputSecret id="password" value="" class="span3 input-full" required="true" requiredMessage="Passwords must not be blank">
+                                                            <h:inputSecret id="password" value="#{customerManagedBean.customer.password}" class="span3 input-full" required="true" requiredMessage="Passwords must not be blank">
                                                                 <f:validateLength minimum="3" maximum="30" />
                                                             </h:inputSecret><span style="color: red; margin-left: 10px">*</span><br />
                                                             <h:message for="password" /> <br/><br/><span style="color: red; margin-left: 10px;">(*) Field must not be blank!</span><br/>
@@ -51,7 +51,7 @@
                                                         
                                                     </div>
                                                     
-                                                    <h:commandButton class="btn btn-success" value="Login"  /> or <a href="register.xhtml" title="Register">Register</a>
+                                                    <h:commandButton class="btn btn-info" value="Login" action="#{customerManagedBean.login()}" /> or <a href="register.xhtml" title="Register">Register</a>
                                                 </fieldset>
                                             </div>
                                         </div>

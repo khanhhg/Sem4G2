@@ -2,6 +2,12 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/D:/AAProjectSem4/Sem4Group2/Group2-war/src/java/admin_controller/ProductController.java</file>
+            <file>file:/D:/AAProjectSem4/Sem4Group2/Group2-war/web/admin_template/myTemplate.xhtml</file>
+            <file>file:/D:/AAProjectSem4/Sem4Group2/Group2-war/src/java/admin_controller/OrderController.java</file>
+            <file>file:/D:/AAProjectSem4/Sem4Group2/Group2-war/web/admin/listOrder.xhtml</file>
+            <file>file:/D:/AAProjectSem4/Sem4Group2/Group2-war/web/admin/listOrderDetail.xhtml</file>
+        </group>
     </open-files>
 </project-private>

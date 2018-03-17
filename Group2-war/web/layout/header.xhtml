@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-       xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
 
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
@@ -12,7 +12,7 @@
     <h:body>
         <ui:composition>
             <header>
-                  <div class="navbar navbar-fixed-top" id="main-nav">
+                <div class="navbar navbar-fixed-top" id="main-nav">
                     <div class="container">
                         <button data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar" type="button">
                             <span class="icon-bar"></span>
@@ -32,46 +32,47 @@
                                     </li>
 
                                     <li class="active">
-                                       
+                                        <c:if test="#{empty session.getAttribute('email')}">
                                             <a href="#{root}/login.xhtml">Log In</a>
-                                      
-                                    
-                                     
+                                        </c:if>
+                                        <c:if test="#{not empty session.getAttribute('username')}">
+                                            <a href="#{root}/ThongTin.xhtml">Hi , #{session.getAttribute("email")}</a>
+                                        </c:if>
                                     </li>
 
-                                   
+                                    <c:if test="#{not empty session.getAttribute('email')}">
                                         <li class="active">
-                                   
+                                            <h:commandLink class="logout" action="#{customerManaged.logout()}">Sign out</h:commandLink>
                                         </li>
                                         <li class="active">
-                                            <a href="">ShopCart</a>
+                                            <a href="#{root}/shopCart.xhtml">Cart</a>
                                         </li>
-                                    
+                                    </c:if>
 
-                                    
+                                    <c:if test="#{empty session.getAttribute('email')}">
                                         <li class="active">
                                             <a href="#{root}/register.xhtml">Register</a>
                                         </li>
-                                 
+                                    </c:if>
 
-                                   
+
                                 </ul>
                             </nav>
                         </h:form>
-                      
-                             <!--Kiem tra dang nhap-->
-                            <ul class="nav pull-right left-tablet">
-                                <li class="dropdown hover topcart">
-                                    <a class="dropdown-toggle" href="#{root}/shopCart.xhtml">
-                                        <i class="carticon"></i> Cart <span class="label label-success font14">(#{shopCart.count} Items)</span> - 
-                                        <h:outputText value="#{shopCart.total}">
-                                            <f:convertNumber pattern="###,###₫" currencySymbol="₫" type="currency"/>
-                                        </h:outputText>
-                                    </a>
-                                </li>
-                            </ul>
-                        
-                       
+
+                        <!--Kiem tra dang nhap-->
+                        <ul class="nav pull-right left-tablet">
+                            <li class="dropdown hover topcart">
+                                <a class="dropdown-toggle" href="#{root}/shopCart.xhtml">
+                                    <i class="carticon"></i> Cart <span class="label label-info font14">(#{shopCart.count} Items)</span> - 
+                                    <h:outputText value="#{shopCart.total}">
+                                        <f:convertNumber pattern="###,###₫" currencySymbol="₫" type="currency"/>
+                                    </h:outputText>
+                                </a>
+                            </li>
+                        </ul>
+
+
                     </div>
                 </div>
                 <div class="header-white">
@@ -87,9 +88,10 @@
                                     <div class="pull-right logintext">Welcome to Online Fashion Shop
                                     </div>
                                 </div>
+                                <!-- Search -->
                                 <h:form class="form-search marginnull topsearch pull-right" prependId="false">
                                     <h:inputText class="input-large search-query search-icon-top" value="" />
-                                    <h:commandButton immediate="false" class="btn btn-success" style="margin-left: 5px;" value="Search" /> 
+                                    <h:commandButton immediate="false" class="btn btn-info" style="margin-left: 5px;" value="Search" /> 
                                 </h:form>
                             </div>
                         </div>
@@ -104,14 +106,14 @@
                                                 Home
                                             </a>
                                         </li>
-                                      
+
                                         <li>
                                             <a href="#" class="">
-                                               Category
+                                                Category
                                             </a>
                                             <div>
                                                 <ul class="arrow">
-                                                    
+
                                                     <c:forEach items="#{categoryManagedBean.list}" var="item">
                                                         <li>
                                                             <h:commandLink action="#{categoryManagedBean.showCategory()}" value="#{item.categoryName}" class="">
@@ -119,18 +121,18 @@
                                                             </h:commandLink>
                                                         </li>
                                                     </c:forEach>
-                                                  
+
                                                 </ul>
                                             </div>
                                         </li>
-                                  
+
                                         <li>
                                             <a href="#" class="">
                                                 Brand
                                             </a>
                                             <div>
                                                 <ul class="arrow">
-                                                    
+
                                                     <c:forEach items="#{brandManagedBean.list}" var="item">
                                                         <li>
                                                             <h:commandLink action="#{brandManagedBean.showBrand()}" value="#{item.brandName}" class="">
@@ -138,7 +140,7 @@
                                                             </h:commandLink>
                                                         </li>
                                                     </c:forEach>
-                                                  
+
                                                 </ul>
                                             </div>
                                         </li>
@@ -147,7 +149,7 @@
                                                 News </a>
                                             <div>
                                                 <ul class="arrow">
-                                                  
+
                                                 </ul>
                                             </div>
                                         </li>

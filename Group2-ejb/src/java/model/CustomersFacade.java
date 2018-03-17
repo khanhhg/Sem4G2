@@ -10,6 +10,9 @@ import entities.Customers;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.Root;
 
 /**
  *
@@ -28,5 +31,34 @@ public class CustomersFacade extends AbstractFacade<Customers> implements Custom
     public CustomersFacade() {
         super(Customers.class);
     }
-    
+    @Override
+      public boolean checkLogin(String email, String password) {
+        CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
+        javax.persistence.criteria.CriteriaQuery cq = cb.createQuery();
+        Root c = cq.from(Customers.class);
+        cq.select(c);
+        cq.where(cb.equal(c.get("email"), email),
+                cb.equal(c.get("password"), password)
+                
+        );
+        Query q = getEntityManager().createQuery(cq);
+        return q.getResultList().size() > 0;
+    }
+    @Override
+       public Customers getByEmail(String email) {
+        CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
+        javax.persistence.criteria.CriteriaQuery cq = cb.createQuery();
+        Root c = cq.from(Customers.class);
+        cq.select(c);
+        cq.where(cb.equal(c.get("email"), email)
+        );
+        Query q = getEntityManager().createQuery(cq);
+        Customers cus;
+        try {
+            cus = (Customers) q.getSingleResult();
+        } catch (Exception e) {
+            cus = null;
+        }
+        return cus;
+    }
 }
