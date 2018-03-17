@@ -69,8 +69,29 @@ public class OrderController {
         return "";
     }
        public String remove(Orders order) {
-
+          
+//        int quantity;
+//        for (OrderDetails item : order.getOrderDetailsCollection()) {
+//            quantity = item.getProductID().getQuantity() + item.getQuantity();
+//            item.getProductID().setQuantity((short) quantity);
+//            productsFacade.edit(item.getProductID());
+//        }
+//        ordersFacade.remove(order);
+      int i =  order.getStatus();
+      if(i ==2){
+       ordersFacade.remove(order);
+       return "";
+      }
+      else{
+           int quantity;
+        for (OrderDetails item : order.getOrderDetailsCollection()) {
+            quantity = item.getProductID().getQuantity() + item.getQuantity();
+            item.getProductID().setQuantity((short) quantity);
+            productsFacade.edit(item.getProductID());
+        }
         ordersFacade.remove(order);
         return "";
+      }
     }
+   
 }

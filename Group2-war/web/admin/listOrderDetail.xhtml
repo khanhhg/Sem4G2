@@ -63,25 +63,25 @@
                                     <div class="row-form clearfix">
                                         <div class="span3">Buyers name : </div>
                                         <div class="span9">
-                                            #{orderAdminManaged.order.customerID.customerName}
+                                            #{orderController.order.customerID.customerName}
                                         </div>
                                     </div>
                                     <div class="row-form clearfix">
                                         <div class="span3">Buyers address : </div>
                                         <div class="span9">
-                                            #{orderAdminManaged.order.customerID.customerAddress}
+                                            #{orderController.order.customerID.address}
                                         </div>
                                     </div>
                                     <div class="row-form clearfix">
                                         <div class="span3">Buyers phone : </div>
                                         <div class="span9">
-                                            #{orderAdminManaged.order.customerID.customerPhone}
+                                            #{orderController.order.customerID.phone}
                                         </div>
                                     </div>
                                     <div class="row-form clearfix">
                                         <div class="span3">Buyers email : </div>
                                         <div class="span9">
-                                            #{orderAdminManaged.order.customerID.customerEmail}
+                                            #{orderController.order.customerID.email}
                                         </div>
                                     </div>
                                     <div class="row-form clearfix">
@@ -101,7 +101,7 @@
                                     <div class="row-form clearfix">
                                         <div class="span3">Recipient mobile : </div>
                                         <div class="span9">
-                                            #{orderController.order.orderMobile}
+                                            #{orderController.order.orderPhone}
                                         </div>
                                     </div>
                                     <div class="row-form clearfix">
@@ -123,13 +123,13 @@
                                                 <div class="span3">
                                                     <h:form>
                                                         Product : 
-                                                        <h:commandLink action="#{productAdminManaged.details(detail.productID.productID)}">
+                                                        <h:commandLink action="#{productController.details(detail.productID.productID)}">
                                                             <h6>#{detail.productID.productName}</h6>
                                                         </h:commandLink>
                                                     </h:form>
                                                 </div>
                                                 <div class="span3">Price :  
-                                                    <h:outputText value="#{detail.productID.productPrice}">
+                                                    <h:outputText value="#{detail.productID.priceOut}">
                                                         <f:convertNumber pattern="###,###₫" currencySymbol="₫" type="currency"/>
                                                     </h:outputText>
                                                 </div>
@@ -137,13 +137,13 @@
                                                     Quantity : #{detail.quantity}
                                                 </div>
                                                 <div class="span3">Total : 
-                                                    <h:outputText value="#{detail.productID.productPrice * detail.quantity}">
+                                                    <h:outputText value="#{detail.productID.priceOut * detail.quantity}">
                                                         <f:convertNumber pattern="###,###₫" currencySymbol="₫" type="currency"/>
                                                     </h:outputText>
                                                 </div>
                                             </div>
                                         </div>
-                                        <c:set var="total" value="#{total + detail.productID.productPrice * detail.quantity}" />
+                                        <c:set var="total" value="#{total + detail.productID.priceOut * detail.quantity}" />
                                     </c:forEach>
                                     <div class="row-form clearfix">
                                         <div class="span3"></div>
@@ -164,21 +164,21 @@
                                     <div class="footer tar">
                                         <h:form>
                                             <c:choose>
-                                                <c:when test="#{orderAdminManaged.order.orderStatus == -1}">
+                                                <c:when test="#{orderController.order.status == -1}">
                                                 </c:when>
-                                                <c:when test="#{orderAdminManaged.order.orderStatus == 0}">
-                                                    <h:commandButton class="btn" action="#{orderAdminManaged.changeStatus(orderAdminManaged.order.orderID, '-1')}" value="Cancel" />&nbsp;
-                                                    <h:commandButton class="btn" action="#{orderAdminManaged.changeStatus(orderAdminManaged.order.orderID, '1')}" value="In progress" />&nbsp;
+                                                <c:when test="#{orderController.order.status == 0}">
+                                                    <h:commandButton class="btn" action="#{orderController.changeStatus(orderController.order.orderID, '-1')}" value="Cancel" />&nbsp;
+                                                    <h:commandButton class="btn" action="#{orderController.changeStatus(orderController.order.orderID, '1')}" value="In progress" />&nbsp;
                                                 </c:when>
-                                                <c:when test="#{orderAdminManaged.order.orderStatus == 1}">
-                                                    <h:commandButton class="btn" action="#{orderAdminManaged.changeStatus(orderAdminManaged.order.orderID, '0')}" value="New Order" />&nbsp;
-                                                    <h:commandButton class="btn" action="#{orderAdminManaged.changeStatus(orderAdminManaged.order.orderID, '2')}" value="Complete" />&nbsp;
+                                                <c:when test="#{orderController.order.status == 1}">
+                                                    <h:commandButton class="btn" action="#{orderController.changeStatus(orderController.order.orderID, '0')}" value="New Order" />&nbsp;
+                                                    <h:commandButton class="btn" action="#{orderController.changeStatus(orderController.order.orderID, '2')}" value="Complete" />&nbsp;
                                                 </c:when>
                                                 <c:otherwise>
                                                 </c:otherwise>
                                             </c:choose>
-                                            <h:commandLink class="btn" action="#{orderAdminManaged.remove(orderAdminManaged.order)}" value="Delete" onclick="return confirm('Are you sure you want to delete ?');" />&nbsp;
-                                            <a href="ListHoaDon.xhtml">
+                                            <h:commandLink class="btn" action="#{orderController.remove(orderController.order)}" value="Delete" onclick="return confirm('Are you sure you want to delete ?');" />&nbsp;
+                                            <a href="listOrder.xhtml">
                                                 <button type="button" class="btn">Back</button>
                                             </a>
                                         </h:form>

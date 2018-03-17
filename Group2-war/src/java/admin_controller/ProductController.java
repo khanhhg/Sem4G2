@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package admin_controller;
 
-import entities.Brands;
 import entities.Products;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import model.ProductsFacadeLocal;
 
 /**
  *
@@ -19,9 +19,24 @@ import javax.faces.bean.RequestScoped;
 @RequestScoped
 public class ProductController {
 
-  
+    @EJB
+    private ProductsFacadeLocal productsFacade;
+    private Products product;
+
     public ProductController() {
-       
+
     }
-    
+
+    public String details(int id) {
+        product = productsFacade.find(id);
+        return "ChiTietSanPham";
+    }
+
+    public Products getProduct() {
+        return product;
+    }
+
+    public void setProduct(Products product) {
+        this.product = product;
+    }
 }
