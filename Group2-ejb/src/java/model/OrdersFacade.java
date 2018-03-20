@@ -7,6 +7,7 @@
 package model;
 
 import entities.Orders;
+import javax.annotation.PreDestroy;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -32,5 +33,10 @@ public class OrdersFacade extends AbstractFacade<Orders> implements OrdersFacade
      public int createOrders(Orders entity) {
       
         return entity.getOrderID();
+    }
+      @PreDestroy
+    @Override
+    public void destroy() {
+        em.close();
     }
 }

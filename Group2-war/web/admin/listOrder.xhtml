@@ -81,7 +81,7 @@
                                                             <f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
                                                         </h:outputText>
                                                     </td>
-                                                    <c:set var="totalPrice" value="0" />
+                                              <c:set var="totalPrice" value="0" /> 
                                                     <c:forEach items="#{item.orderDetailsCollection}" var="orderDetail">
                                                         <c:set var="totalPrice" value="#{totalPrice + orderDetail.productID.priceOut * orderDetail.quantity}" />
                                                     </c:forEach>

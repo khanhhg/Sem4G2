@@ -7,6 +7,7 @@
 package model;
 
 import entities.Contacts;
+import javax.annotation.PreDestroy;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,5 +29,9 @@ public class ContactsFacade extends AbstractFacade<Contacts> implements Contacts
     public ContactsFacade() {
         super(Contacts.class);
     }
-    
+    @PreDestroy
+    @Override
+    public void destroy() {
+        em.close();
+    } 
 }

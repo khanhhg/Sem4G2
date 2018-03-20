@@ -29,14 +29,9 @@ public class BrandManagedBean {
     private Brands brands;
     private List<Products> listProduct;
     public BrandManagedBean() {
-    }
-
-    public Brands getBrands() {
-        return brands;
-    }
-
-    public void setBrands(Brands brands) {
-        this.brands = brands;
+        if (brands == null) {
+            brands = new Brands();
+        }
     }
 
     public List<Products> getListProduct() {
@@ -65,5 +60,21 @@ public class BrandManagedBean {
             brands = brandsFacade.find(id);
             return "itemInBrand";
         }
+    }
+
+    public Brands getBrands() {
+        return brands;
+    }
+
+    public void setBrands(Brands brands) {
+        this.brands = brands;
+    }
+
+    public BrandsFacadeLocal getBrandsFacade() {
+        return brandsFacade;
+    }
+
+    public void setBrandsFacade(BrandsFacadeLocal brandsFacade) {
+        this.brandsFacade = brandsFacade;
     }
 }

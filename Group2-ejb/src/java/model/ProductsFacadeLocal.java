@@ -36,5 +36,7 @@ public interface ProductsFacadeLocal {
     public List<Products> findAllPro();
 
     public List<Products> findAllOrder();
+
+    public void destroy();
     
 }

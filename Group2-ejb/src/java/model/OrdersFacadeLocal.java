@@ -32,5 +32,7 @@ public interface OrdersFacadeLocal {
     int count();
 
     public int createOrders(Orders entity);
+
+    public void destroy();
     
 }

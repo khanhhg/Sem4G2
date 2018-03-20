@@ -12,9 +12,9 @@
       
         <ui:composition template="/layout/bodyLayout.xhtml">
             <ui:define name="content">
-                <c:set var='category' value='#{categoryManagedBean.category}' />
+                <c:set var='cate' value='#{categoryManagedBean.category}'/>
                 <c:choose> 
-                    <c:when test="${empty category}">
+                    <c:when test="${empty cate}">
                         #{facesContext.externalContext.redirect("404.xhtml")}
                     </c:when>
                     <c:otherwise>
@@ -23,21 +23,22 @@
                                 <nav class="breadcrumb" role="navigation" aria-label="breadcrumbs">
                                     <a href="/" title="general.breadcrumbs.home_link_title">Home</a>
                                     <span class="divider">/</span>
-                                    <a href="itemInCategory.xhtml?id=#{category.categoryID}" title="">#{category.categoryName}</a>
+                                    <a href="itemInCategory.xhtml?id=#{cate.categoryID}" title="">#{cate.categoryName}</a>
                                 </nav>
                             </div>
                             <section id="latest">
                                 <div class="container">
                                     <div class="row">
                                         <div class="span12">
-                                            <h1 class="headingfull"><span>Category #{category.categoryName}</span></h1>
+                                            <h1 class="headingfull"><span>Category #{cate.categoryName}</span></h1>
                                             <ul class="thumbnails">
                                                 <ul class="products">
-                                                    <c:if test="#{category.productsCollection.size() == 0}">
-                                                        No product in #{brands.brandName} brand
+                                                   
+                                                    <c:if test="#{cate.productsCollection.size() == 0}">
+                                                        No product in #{categoryManagedBean.category.categoryName} Caterory
                                                     </c:if>
-                                                    <c:if test="#{category.productsCollection.size() != 0}">
-                                                        <c:forEach items="#{category.productsCollection}" var="newList">
+                                                    <c:if test="#{cate.productsCollection.size() != 0}">
+                                                        <c:forEach items="#{cate.productsCollection}" var="newList">
                                                             <li class="span3">
                                                                 <h:form>
                                                                     <h:commandLink class="prdocutname" action="#{productManagedBean.showProduct()}">
@@ -65,14 +66,13 @@
                                                                             </span>
                                                                         </div>
                                                                         <h:form>
-                                                                            <!-- Kiem tra dang nhap-->
-                                                                           
-
-
-                                                                           
+                                                                            <c:if test="#{empty session.getAttribute('email')}">
+                                                                                <span class="cartadd addtocart pull-right tooltip-test" style="border:0;" />
+                                                                            </c:if>
+                                                                            <c:if test="#{not empty session.getAttribute('email')}">
                                                                                 <h:commandButton class="cartadd addtocart pull-right tooltip-test" style="border:0;" action="#{shopCart.addCart(newList)}">
                                                                                 </h:commandButton>
-                                                                                <!-- Kiem tra dang nhap-->
+                                                                            </c:if>
                                                                         </h:form>
                                                                     </div>
                                                                 </div>

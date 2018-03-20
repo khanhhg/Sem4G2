@@ -7,6 +7,7 @@
 package model;
 
 import entities.Customers;
+import javax.annotation.PreDestroy;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -60,5 +61,10 @@ public class CustomersFacade extends AbstractFacade<Customers> implements Custom
             cus = null;
         }
         return cus;
+    }
+        @PreDestroy
+    @Override
+    public void destroy() {
+        em.close();
     }
 }

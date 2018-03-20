@@ -34,5 +34,7 @@ public interface CustomersFacadeLocal {
     public boolean checkLogin(String email, String password);
 
     public Customers getByEmail(String email);
+
+    public void destroy();
     
 }

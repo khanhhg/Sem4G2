@@ -30,5 +30,7 @@ public interface BrandsFacadeLocal {
     List<Brands> findRange(int[] range);
 
     int count();
+
+    public void destroy();
     
 }

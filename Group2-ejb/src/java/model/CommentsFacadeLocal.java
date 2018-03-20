@@ -32,5 +32,7 @@ public interface CommentsFacadeLocal {
     int count();
 
     public List<Comments> findOnProduct(int id);
+
+    public void destroy();
     
 }

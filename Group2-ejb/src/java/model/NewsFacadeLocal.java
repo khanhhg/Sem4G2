@@ -30,5 +30,7 @@ public interface NewsFacadeLocal {
     List<News> findRange(int[] range);
 
     int count();
+
+    public void destroy();
     
 }

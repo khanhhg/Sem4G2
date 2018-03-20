@@ -10,8 +10,8 @@
         <c:set var="imagesPath" value="#{request.contextPath}/resources/pro_images" />
         <c:set var="newsImagesPath" value="#{request.contextPath}/resources/news_images" />
       <c:if test="">
-            <c:if test="">
-              
+          <c:if test="#{customerManagedBean.findUserByEmail(session.getAttribute('email')) == null}">
+                #{session.removeAttribute('email')}
                 #{facesContext.externalContext.redirect("index.xhtml")}
             </c:if>
         </c:if>
@@ -20,6 +20,7 @@
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
             <meta charset="utf-8"/>
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+           
             <link href="#{root}/resources/css/css.css" rel="stylesheet" type="text/css" />
             <link href="#{root}/resources/css/css1.css" rel="stylesheet" type="text/css" />
             <link href="#{root}/resources/css/css2.css" rel="stylesheet" type="text/css" />
@@ -48,7 +49,7 @@
             <ui:include src="/layout/header.xhtml" />
         </ui:insert>
         <ui:insert name="footer" >
-            <ui:include src="/layout/footer.xhtml" />
+            <ui:include src="/layout/footerDemo.xhtml" />
         </ui:insert>
     </h:body>
 </html>

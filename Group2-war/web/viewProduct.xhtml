@@ -12,7 +12,7 @@
       <f:view>
             <ui:composition template="/layout/bodyLayout.xhtml">
                 <ui:define name="content">
-                    <c:set var="product" value="#{productManagedBean.product}" />
+                    <c:set var='product' value='#{productManagedBean.product}' />
                     <c:choose> 
                         <c:when test="${empty product}">
                             #{facesContext.externalContext.redirect("404.xhtml")}
@@ -64,10 +64,10 @@
                                                                     </div>
                                                                     <div class="cartsection">
                                                                         <h:form>
-                                                                            <h:commandButton class="btn addtocart theme btn btn-success pull-left" value="Add to cart" disabled="true" />
+                                                                            <h:commandButton class="btn addtocart theme btn btn-success pull-left" value="Add to cart" disabled="true" rendered="#{empty session.getAttribute('email')}" />
                                                                         </h:form>
                                                                         <h:form>
-                                                                            <h:commandButton  value="Add to cart" class="btn addtocart theme btn btn-success pull-left" action="#{ShopCart.addCart(newList)}" >
+                                                                            <h:commandButton  value="Add to cart" class="btn addtocart theme btn btn-info pull-left" rendered="#{not empty session.getAttribute('email')}"  action="#{shopCart.addCart(product)}" >
                                                                             </h:commandButton>
                                                                         </h:form>
                                                                     </div>
@@ -91,14 +91,21 @@
                                                                         <div class="tab-pane" id="review">
                                                                             <ul class="reveiw">
                                                                                 <h3>Comment</h3>
-                                                                               
-                                                                               <!--Kiem tra dang nhap-->
+                                                                                <c:forEach items="#{commentManagedBean.getList(product.productID)}" var="row">
+                                                                                    <li>
+                                                                                        <b style="color: red;">#{row.customerID.customerName}</b> - 
+                                                                                        #{row.commentDetail}
+                                                                                    </li>
+                                                                                </c:forEach>
+                                                                                <c:if test="#{not empty session.getAttribute('username')}">
                                                                                     <h:form>
                                                                                         <h:inputTextarea value="#{commentManagedBean.comment.commentDetail}" /><br />
-                                                                                        <h:commandButton value="Send" class="btn addtocart theme btn btn-success pull-left" action="#{commentManagedBean.addComment( product)}" />
+                                                                                        <h:commandButton value="Send" class="btn addtocart theme btn btn-info pull-left" action="#{commentManagedBean.addComment(session.getAttribute('email'), product)}" />
                                                                                     </h:form>
-                                                                                
-                                                                                <!--Kiem tra dang nhap-->
+                                                                                </c:if>
+                                                                                <c:if test="#{empty session.getAttribute('email')}">
+                                                                                    <a href="login.xhtml" style="color: red">Please login to comment!</a>
+                                                                                </c:if>
                                                                             </ul>
                                                                         </div>
                                                                     </div>
@@ -119,7 +126,7 @@
                                                 <div class="grid-uniform">
                                                     <c:forEach items="#{productManagedBean.getRelatedList(product.categoryID.categoryID)}" var="newList">
                                                         <li class="span3">
-                                                            <a class="prdocutname" href="ViewProduct.xhtml?id=#{newList.productID}">#{newList.productName}</a>
+                                                            <a class="prdocutname" href="viewProduct.xhtml?id=#{newList.productID}">#{newList.productName}</a>
                                                             <div class="thumbnail">
                                                                 <span class="sale tooltip-test" data-original-title="">Hot</span>
                                                                 <h:form>
@@ -140,10 +147,13 @@
                                                                         </span>
                                                                     </div>
                                                                     <h:form>
-                                                                        
-                                                                            <h:commandButton class="cartadd addtocart pull-right tooltip-test" style="border:0;" action="#{ShopCart.addCart(newList)}">
+                                                                        <c:if test="#{empty session.getAttribute('email')}">
+                                                                            <span class="cartadd addtocart pull-right tooltip-test" style="border:0;" />
+                                                                        </c:if>
+                                                                        <c:if test="#{not empty session.getAttribute('email')}">
+                                                                            <h:commandButton class="cartadd addtocart pull-right tooltip-test" style="border:0;" action="#{shopCart.addCart(newList)}">
                                                                             </h:commandButton>
-                                                                        
+                                                                        </c:if>
                                                                     </h:form>
                                                                 </div>
                                                             </div>
@@ -160,6 +170,7 @@
                 </ui:define>
             </ui:composition>
         </f:view>
+        
     </h:body>
 </html>
 

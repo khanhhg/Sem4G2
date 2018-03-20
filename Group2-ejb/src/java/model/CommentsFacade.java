@@ -8,6 +8,7 @@ package model;
 
 import entities.Comments;
 import java.util.List;
+import javax.annotation.PreDestroy;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -45,5 +46,9 @@ public class CommentsFacade extends AbstractFacade<Comments> implements Comments
         Query q = getEntityManager().createQuery(cq);
         return q.getResultList();
     }
-
+ @PreDestroy
+    @Override
+    public void destroy() {
+        em.close();
+    }
 }

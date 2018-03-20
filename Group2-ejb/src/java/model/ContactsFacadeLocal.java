@@ -30,5 +30,7 @@ public interface ContactsFacadeLocal {
     List<Contacts> findRange(int[] range);
 
     int count();
+
+    public void destroy();
     
 }

@@ -185,7 +185,7 @@ ul.bestseller li:hover {  }
 .contact ul li.mobile { background-position:0 -43px }
 .contact ul li.email { background-position:0 -96px }
 //footer
-.footersocial { padding:30px 0 50px; background:#666 url(../images/footerbg1.png) repeat-x scroll 0 -5px; }
+.footersocial { padding:30px 0 50px; background:#666  }//url(../images/footerbg1.png) repeat-x scroll 0 -5px;
 .footersocial h2 {  margin-bottom:2px; font-size:22px; background:none; text-shadow:none;  padding:7px 27px 11px 10px; background:#fff url(../images/)right center no-repeat; }
 .footersocial .contact h2, .footersocial .twitter h2 { background:#fff url(../images/) center center no-repeat;}//dddddddddddddđ
 .footersocial .aboutus h2 { background:#fff url(../images/) left center no-repeat; padding:7px 10px 7px 30px;}// spanhearding

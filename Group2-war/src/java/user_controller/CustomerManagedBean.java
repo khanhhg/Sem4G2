@@ -55,4 +55,7 @@ public class CustomerManagedBean {
         SessionManager.getRequest().setAttribute("message", "Email or password is incorrect");
         return "";
     }
+       public Customers findUserByEmail(String email) {
+        return customersFacade.getByEmail(email);
+    }
 }

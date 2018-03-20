@@ -7,6 +7,7 @@
 package model;
 
 import entities.Brands;
+import javax.annotation.PreDestroy;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,5 +29,9 @@ public class BrandsFacade extends AbstractFacade<Brands> implements BrandsFacade
     public BrandsFacade() {
         super(Brands.class);
     }
-    
+     @PreDestroy
+    @Override
+    public void destroy() {
+        em.close();
+    }
 }

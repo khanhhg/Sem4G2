@@ -34,20 +34,8 @@ public class ProductManagedBean {
         }
     }
 
-    public int getProductID() {
-        return productID;
-    }
-
-    public void setProductID(int productID) {
-        this.productID = productID;
-    }
-
     public Products getProduct() {
         return product;
-    }
-
-    public void setProduct(Products product) {
-        this.product = product;
     }
 
     /* Tao phuong thuc */
@@ -58,9 +46,11 @@ public class ProductManagedBean {
     public List<Products> getOrderList() {
         return productsFacade.findAllOrder();
     }
-  public List<Products> getRelatedList(String categoryID){
+
+    public List<Products> getRelatedList(String categoryID) {
         return productsFacade.findRelated(Integer.parseInt(categoryID));
     }
+
     public String showProduct() {
         Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
         int id = Integer.parseInt(params.get("productID"));

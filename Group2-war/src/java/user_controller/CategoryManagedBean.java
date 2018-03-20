@@ -26,20 +26,16 @@ public class CategoryManagedBean {
     @EJB
     private CategoriesFacadeLocal categoriesFacade;
 
-    private List<Products> items = null;
-    private int categoryID = 0;
+   private List<Products> listProduct;
+   // private int categoryID = 0;
     private Categories category;
 
     public CategoryManagedBean() {
+         if (category == null) {
+            category = new Categories();
+        }
     }
 
-    public int getCategoryID() {
-        return categoryID;
-    }
-
-    public void setCategoryID(int categoryID) {
-        this.categoryID = categoryID;
-    }
 
     public Categories getCategory() {
         return category;
@@ -69,5 +65,21 @@ public class CategoryManagedBean {
             this.category = categoriesFacade.find(id);
             return "itemInCategory";
         }
+    }
+
+    public CategoriesFacadeLocal getCategoriesFacade() {
+        return categoriesFacade;
+    }
+
+    public void setCategoriesFacade(CategoriesFacadeLocal categoriesFacade) {
+        this.categoriesFacade = categoriesFacade;
+    }
+
+    public List<Products> getListProduct() {
+        return listProduct;
+    }
+
+    public void setListProduct(List<Products> listProduct) {
+        this.listProduct = listProduct;
     }
 }

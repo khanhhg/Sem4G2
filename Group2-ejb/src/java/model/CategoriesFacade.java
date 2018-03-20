@@ -7,6 +7,7 @@
 package model;
 
 import entities.Categories;
+import javax.annotation.PreDestroy;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,6 +28,10 @@ public class CategoriesFacade extends AbstractFacade<Categories> implements Cate
 
     public CategoriesFacade() {
         super(Categories.class);
+    } 
+     @PreDestroy
+    @Override
+    public void destroy() {
+        em.close();
     }
-    
 }

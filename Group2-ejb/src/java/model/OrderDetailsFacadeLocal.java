@@ -30,5 +30,7 @@ public interface OrderDetailsFacadeLocal {
     List<OrderDetails> findRange(int[] range);
 
     int count();
+
+    public void destroy();
     
 }

@@ -8,6 +8,7 @@ package model;
 
 import entities.Products;
 import java.util.List;
+import javax.annotation.PreDestroy;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -73,5 +74,10 @@ public class ProductsFacade extends AbstractFacade<Products> implements Products
         Query q = getEntityManager().createQuery(cq);
         q.setMaxResults(8);
         return q.getResultList();
+    }
+       @PreDestroy
+    @Override
+    public void destroy() {
+        em.close();
     }
 }
